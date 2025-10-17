@@ -1,0 +1,15 @@
+﻿# Bỏ qua thư mục Visual Studio tạm
+.vs/
+*.vsidx
+
+# Bỏ qua các thư mục build
+bin/
+obj/
+Debug/
+Release/
+
+# Bỏ qua file tạm hệ thống
+*.user
+*.suo
+*.log
+*.tmp
