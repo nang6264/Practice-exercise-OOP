@@ -1,5 +1,26 @@
 #include <iostream>
 using namespace std;
+
+// Day of month array
+const int DayOfMonths[] = { 0,31,28,31,30,31,30,31,31,30,31,30,31 };
+
+// check Leap Year 
+bool IsLeapYear(int year) {
+	if (year % 4 == 0 && year % 100 != 0 || year % 400 == 0) {
+		return true;
+	}
+	return false;
+}
+
+// Get number of days in month
+int GetDayInMonth(int month, int year) {
+	if (month == 2 && IsLeapYear(year)) {
+		return 29;
+	}
+	return DayOfMonths[month];
+}
+
+
 class CDate
 {
 private:
@@ -40,7 +61,7 @@ void CDate::InputDate() {
 	cout << "Input Year: ";
 	cin >> Year;
 	if (!CheckDate()) {
-		cout << "Error!" << endl;
+		cout << "Input Date Error!" << endl;
 	}
 }
 
@@ -51,42 +72,10 @@ void CDate::OutputDate() {
 
 //Check if the date is valid 
 bool CDate::CheckDate() {
-	if (Year < 0 || Month < 1 || Month>12 || Day < 1 || Day >31) {
+	if (Year < 0 || Month < 1 || Month > 12 || Day < 1|| Day>GetDayInMonth(Month,Year)) {
 		return false;
 	}
-	else {
-		if (Month == 2) {
-			if (InspectLeapYear()) {
-				if (Day > 29) {
-					return false;
-				}
-				else {
-					return true;
-				}
-
-			}
-			else {
-				if (Day > 28) {
-					return false;
-				}
-				else {
-					return true;
-				}
-			}
-		}
-		else if (Month == 4 || Month == 6 || Month == 9 || Month == 11) {
-			if (Day > 30) {
-				return false;
-			}
-			else {
-				return true;
-			}
-		}
-		else {
-			return true;
-		}
-	}
-
+	return true;	
 }
 
 // Check if the year is a leap year 
@@ -102,42 +91,29 @@ bool CDate::InspectLeapYear() {
 
 // Increase by one year 
 CDate CDate::IncreaseYear() {
-	if (InspectLeapYear() && Month == 2 && Day == 29) {
-		this->Year++;
-		this->Day--;
+	Year++;
+	if (!InspectLeapYear() && Month == 2 && Day == 29) {
+		this->Day = 28; 
 	}
-	else {
-		this->Year++;
-	}
-	return *this;
 }
 
 // Increase by one month 
 CDate CDate::IncreaseMonth() {
-	this->Month++;
+	Month++;
 	if (Month > 12) {
 		Month = 1;
 		IncreaseYear();
 	}
-	if ((Month == 4 || Month == 6 || Month == 9 || Month == 11) && Day == 31) {
-		this->Day--;
+	if (Day > GetDayInMonth(Month, Year)) {
+		Day = GetDayInMonth(Month, Year);
 	}
-
-	if (InspectLeapYear() && Month == 2 && Day > 29) {
-		this->Day = 29;
-	}
-	else if (Month == 2 && Day > 28) {
-		this->Day = 28;
-	}
-
 	return *this;
-
 }
 
 // Increase by one Day 
 CDate CDate::IncreaseDay() {
 	Day++;
-	if (!CheckDate()) {
+	if (Day > GetDayInMonth(Month, Year)) {
 		Day = 1;
 		IncreaseMonth();
 	}
@@ -146,15 +122,11 @@ CDate CDate::IncreaseDay() {
 
 // Decrease by one year
 CDate CDate::DecreaseYear() {
-	if (InspectLeapYear() && Month == 2 && Day == 29) {
-		Year--;
-		Day--;
-	}
-	else {
-		Year--;
+	Year--;
+	if (!InspectLeapYear() && Month == 2 && Day == 29) {
+		this->Day = 28;
 	}
 	return *this;
-
 }
 
 // Decrease by one month
@@ -164,16 +136,11 @@ CDate CDate::DecreaseMonth() {
 		Month = 12;
 		DecreaseYear();
 	}
-	if ((Month == 4 || Month == 6 || Month == 9 || Month == 11) && Day == 31) {
-		Day--;
-	}
-	if (InspectLeapYear() && Month == 2 && Day > 29) {
-		Day = 29;
-	}
-	else if (Month == 2 && Day > 28) {
-		Day = 28;
+	if (Day > GetDayInMonth(Month, Year)) {
+		Day = GetDayInMonth(Month, Year);
 	}
 	return *this;
+	
 }
 
 // Decrase by one Day  
@@ -181,20 +148,7 @@ CDate CDate::DecreaseDay() {
 	Day--;
 	if (Day < 1) {
 		DecreaseMonth();
-		if (Month == 2) {
-			if (InspectLeapYear()) {
-				Day = 29;
-			}
-			else {
-				Day = 28;
-			}
-		}
-		if (Month == 4 || Month == 6 || Month == 9 || Month == 11) {
-			Day = 30;
-		}
-		else {
-			Day = 31;
-		}
+		Day = GetDayInMonth(Month, Year);
 	}
 	return *this;
 }
@@ -210,105 +164,95 @@ CDate CDate::IncreaseYear(int n) {
 
 // Increase by n months
 CDate CDate::IncreaseMonth(int n) {
-	if (n > 12) {
-		int tmp = n / 12;
-		IncreaseYear(tmp);
-		Month += n - tmp * 12;
+	int TotalMonths = Month + n;
+	if (TotalMonths > 12) {
+		int TmpYear = TotalMonths / 12;
+		Year += TmpYear;
+		Month = TotalMonths - TmpYear * 12;
 	}
-	else {
-		Month += n;
+	if (Day > GetDayInMonth(Month, Year)) {
+		Day = GetDayInMonth(Month, Year);
 	}
-	if (Month > 12) {
-		IncreaseYear();
-		Month -= 12;
-
-	}
-	if ((Month == 4 || Month == 6 || Month == 9 || Month == 11) && Day == 31) {
-		this->Day--;
-	}
-
-	if (InspectLeapYear() && Month == 2 && Day > 29) {
-		this->Day = 29;
-	}
-	else if (Month == 2 && Day > 28) {
-		this->Day = 28;
-	}
-
 	return *this;
 }
 
 // Increase by n days 
-CDate CDate::IncreaseDay(int  n) {
-	if (n > 365) {
-		int y = n / 365;
-		IncreaseYear(y);
-		int d1 = n - y * 365;
-		if (d1 > 31) {
-			int m = d1 / 31;
-			IncreaseMonth(m);
-			int d2 = d1 - m * 30;
-			Day += d2;
-			if ((Month == 4 || Month == 6 || Month == 9 || Month == 11) & Day > 30) {
-				Month++;
-				Day -= 30;
-			}
-			else if (InspectLeapYear() && Month == 2 && Day > 29) {
-				Month++;
-				Day -= 29;
-			}
-			else if (Month == 2 && Day > 28) {
-				Month++;
-				Day -= 28;
-			}
-			else if (Day > 31) {
-				Month++;
-				Day -= 31;
-			}
-
-		}
-
+CDate CDate::IncreaseDay(int n) {
+	for (int i = 0; i < n; i++) {
+		IncreaseDay();
 	}
 	return *this;
 
 }
 
 // Decrease by n years
-CDate CDate::DecreaseYear(int  n) {
+CDate CDate::DecreaseYear(int n) {
 	Year -= n;
 	if (!InspectLeapYear() && Month == 2 && Day == 29) {
-		Day--;
+		this->Day = 28;
 	}
 	return *this;
+	
 }
-CDate CDate::DecreaseMonth(int n) {
-	if (n > 12) {
-		int y = n / 12;
-		Year -= y;
-		int m = n - y * 12;
-		Month -= m;
-		if (Month < 1) {
-			Year--;
 
+// Decrease by n months
+CDate CDate::DecreaseMonth(int n) {
+	int TotalMonths = Month - n;
+	if (TotalMonths < 1) {
+		int TmpYear = (abs(TotalMonths) / 12) + 1;
+		Year -= TmpYear;
+		Month = TotalMonths + TmpYear * 12;	
+		if (Month < 1) {
+			Month += 12;
+			Year--;
 		}
 	}
+	else {
+		this->Month = TotalMonths;
+	}
+
+	if (Day > GetDayInMonth(Month, Year)) {
+		Day = GetDayInMonth(Month, Year);
+	}
 	return *this;
-
-
-
 }
-CDate CDate::DecreaseDay(int) {
 
+// Decrease by n days
+CDate CDate::DecreaseDay(int n) {
+	for (int i = 0; i < n; i++) {
+		DecreaseDay();
+	}
+	return *this;
 }
+
+// Get date order in year
 int CDate::DateOrderInYear() {
-
+	int Order = 0;
+	for (int i = 1; i < Month; i++) {
+		Order += GetDayInMonth(i, Year);
+	}
+	Order += Day;
+	return Order;
 }
+
+// Get week order in year
 int CDate::WeekOrderInYear() {
-
+	int DayOfYear = DateOrderInYear();
+	int WeekOrder = DayOfYear / 7;
+	if (DayOfYear % 7 != 0) {
+		WeekOrder++;
+	}
+	return WeekOrder;
 }
+
+// Convert date
 void CDate::ConvertDate() {
-
+	const string MonthNames[] = { "", "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December" };
+	cout  << MonthNames[Month] << " " << Day << ", " << Year << endl;
 }
 
+// Deduct date to date
 int CDate::DeductDateToDate() {
-
+	return 0; 
 }
+
