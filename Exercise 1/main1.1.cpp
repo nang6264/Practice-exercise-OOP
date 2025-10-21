@@ -250,7 +250,7 @@ int CDate::WeekOrderInYear() {
 // Convert date
 void CDate::ConvertDate() {
 	const string MonthNames[] = { "", "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December" };
-	cout  << MonthNames[Month] << " " << Day << ", " << Year << endl;
+	cout  << MonthNames[Month] << " " << setfill(2) << setw(2) << Day << ", " << setw(4) << Year << endl;
 }
 
 // Deduct date to date
