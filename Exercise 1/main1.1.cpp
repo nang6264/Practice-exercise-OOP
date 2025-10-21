@@ -237,12 +237,7 @@ int CDate::DateOrderInYear() {
 
 // Get week order in year
 int CDate::WeekOrderInYear() {
-	int DayOfYear = DateOrderInYear();
-	int WeekOrder = DayOfYear / 7;
-	if (DayOfYear % 7 != 0) {
-		WeekOrder++;
-	}
-	return WeekOrder;
+	const int m[] = { 0,13,14,3,4,5,6,7,8,9,10,11,12 };
 }
 
 // Convert date
@@ -255,4 +250,4 @@ void CDate::ConvertDate() {
 int CDate::DeductDateToDate() {
 	return 0; 
 }
-
+;
