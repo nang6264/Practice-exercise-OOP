@@ -1,4 +1,6 @@
 #include <iostream>
+#include<iomanip>
+
 using namespace std;
 
 // Day of month array
@@ -67,7 +69,7 @@ void CDate::InputDate() {
 
 // Output date 
 void CDate::OutputDate() {
-	cout << "Date: " << Day << "/" << Month << "/" << Year << endl;
+	cout << "Date: " << setfill('0') << setw(2) Day << "/" << setw(2) << Month << "/" << setw(4) << Year << endl;
 }
 
 //Check if the date is valid 
