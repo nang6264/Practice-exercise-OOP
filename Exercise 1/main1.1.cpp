@@ -69,7 +69,7 @@ void CDate::InputDate() {
 
 // Output date 
 void CDate::OutputDate() {
-	cout << "Date: " << setfill('0') << setw(2) Day << "/" << setw(2) << Month << "/" << setw(4) << Year << endl;
+	cout << "Date: " <<  Day << "/"  << Month << "/"  << Year << endl;
 }
 
 //Check if the date is valid 
@@ -97,7 +97,10 @@ CDate CDate::IncreaseYear() {
 	if (!InspectLeapYear() && Month == 2 && Day == 29) {
 		this->Day = 28; 
 	}
+	return *this;
 }
+
+
 
 // Increase by one month 
 CDate CDate::IncreaseMonth() {
@@ -240,26 +243,19 @@ int CDate::DateOrderInYear() {
 // Get week order in year
 int CDate::WeekOrderInYear() {
 	const int m[] = { 0,13,14,3,4,5,6,7,8,9,10,11,12 };
+	return 0;
 }
 
 // Convert date
 void CDate::ConvertDate() {
 	const string MonthNames[] = { "", "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December" };
-	cout  << MonthNames[Month] << " " << setfill(2) << setw(2) << Day << ", " << setw(4) << Year << endl;
+	cout  << MonthNames[Month] << " " << Day << ", "  << Year << endl;
 }
 
 // Deduct date to date
 int CDate::DeductDateToDate() {
-	return 0; 
+	return 0;
 }
-;
-int DayOfWeek(int Day, int Month, int Year)
-{
-	if (Month < 3)
-		Month += 12, Year--;
-	// Zeller’s Congruence
-	int h = (Day + (13 * (Month + 1)) / 5 + Year + (Year / 4) - (Year / 100) + (Year / 400)) % 7;
-
-	int ISO = (h + 5) % 7 + 1;
-	return ISO;
+int main() {
+	return 0; 
 }

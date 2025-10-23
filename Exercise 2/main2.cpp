@@ -62,10 +62,12 @@ CIntArray CIntArray::Remove() {
 	newArray.m_Array = new int[newLength];
 	int index = 0;
 	for (auto it = s.begin(); it != s.end(); it++) {
-		newArray.m_Array[index++] = *it;// copy unique elements to new array
+		newArray.m_Array[index++] = *it;
 	}
-	delete[] this->m_Array;
-	return newArray;
+	delete[]this->m_Array;
+	this->m_Array = newArray.m_Array;
+	this->m_Length = newArray.m_Length;
+	return *this;
 }
 
 // Remove element at index
@@ -76,12 +78,10 @@ CIntArray CIntArray::Remove(int index) {
 			newArray[j++]=this->m_Array[i];
 		}
 	}
-	CIntArray result;
-	result.m_Length = this->m_Length - 1;
-	result.m_Array = newArray;
-	delete[] this->m_Array;
-	delete[] newArray;
-	return result;
+	delete[]this->m_Array;
+	this->m_Array = newArray;
+	this->m_Length = this->m_Length - 1;
+	return *this;
 }
 
 // Remove elements from index with length
@@ -96,12 +96,10 @@ CIntArray CIntArray :: Remove(int length , int index ){
 			newArray[j++] = this->m_Array[i];
 		}
 	}
-	CIntArray result;
-	result.m_Length = this->m_Length - length;
-	result.m_Array = newArray;
-	delete[] this->m_Array;
-	delete[] newArray;
-	return result;
+	delete[]this->m_Array;
+	this->m_Array = newArray;
+	this->m_Length = this->m_Length - length;
+	return *this;
 }
 
 // Replace element at index with value
@@ -121,12 +119,10 @@ CIntArray CIntArray::AddHead(int element) {
 	for(int i=0;i<this->m_Length;i++){
 		newArray[i+1]=this->m_Array[i];
 	}
-	CIntArray result;
-	result.m_Length = this->m_Length + 1;
-	result.m_Array = newArray;
-	delete[] this->m_Array;
-	delete[] newArray;
-	return result;
+	delete[]this->m_Array;
+	this->m_Array = newArray;
+	this->m_Length = this->m_Length + 1;
+	return *this;
 }
 
 // Add element at tail
@@ -136,14 +132,10 @@ CIntArray CIntArray::AddTail(int element) {
 		newArray[i]=this->m_Array[i];
 	}
 	newArray[this->m_Length] = element;
-	CIntArray result;
-	result.m_Length = this->m_Length + 1;
-	result.m_Array = newArray;
-	delete[] this->m_Array;
-	delete[] newArray;
-	return result;
-
-
+	delete[]this->m_Array;
+	this->m_Array = newArray;
+	this->m_Length = this->m_Length + 1;
+	return *this;
 }
 
 // Insert element at index
@@ -158,14 +150,10 @@ CIntArray CIntArray::Insert(int element , int index) {
 			newArray[i] = this->m_Array[j++];
 		}
 	}
-	CIntArray result;
-	result.m_Length = this->m_Length + 1;
-	result.m_Array = newArray;
-	delete[] this->m_Array;
-	delete[] newArray;
-	return result;
-
-
+	delete[]this->m_Array;
+	this->m_Array = newArray;
+	this->m_Length = this->m_Length + 1;
+	return *this;
 }
 
 // Get maximum element
@@ -224,7 +212,6 @@ bool CIntArray::IsSymmetry() {
 		}
 	}
 	return true;
-
 }
 
 // Move elements forward by one position
@@ -234,6 +221,7 @@ CIntArray CIntArray::MoveForward() {
 	for(int i=1;i<this->m_Length;i++){
 		newArray[j++]=this->m_Array[i];
 	}
+	delete[] this->m_Array;
 	this->m_Array = newArray;
 	this->m_Length = this->m_Length - 1;
 	return *this;
@@ -241,19 +229,19 @@ CIntArray CIntArray::MoveForward() {
 
 // Move elements forward by n positions
 CIntArray CIntArray::MoveForward(int n) {
-	if (n> this->m_Length) {
+	if (n>= this->m_Length) {
+		delete[] this->m_Array;
 		this->m_Array = nullptr;
 		this->m_Length = 0;
 	}
 	else {
 		int* newArray = new int[this->m_Length - n];
-		int j = 0;
 		for (int i = n; i < this->m_Length; i++) {
-			newArray[j++] = this->m_Array[i];
+			newArray[i - n] = this->m_Array[i];
 		}
+		delete[] this->m_Array;
 		this->m_Array = newArray;
 		this->m_Length = this->m_Length - n;
-		delete[]newArray;
 	}
 	return *this;
 	
@@ -266,6 +254,7 @@ CIntArray CIntArray::MoveBehind() {
 	for(int i=0;i<this->m_Length - 1;i++){
 		newArray[j++]=this->m_Array[i];
 	}
+	delete[] this->m_Array;
 	this->m_Array = newArray;
 	this->m_Length = this->m_Length - 1;
 	return *this;
@@ -273,20 +262,21 @@ CIntArray CIntArray::MoveBehind() {
 
 // Move elements backward by n positions
 CIntArray CIntArray::MoveBehind(int n) {
-	if (n > m_Length) {
+	if (n >= m_Length) {
+		delete[] this->m_Array;
 		this->m_Array = nullptr;
 		this->m_Length = 0;
 	
 	}
 	else {
 		int* newArray = new int[m_Length - n];
-		int j = 0;
+	
 		for (int i = 0; i < m_Length - n; i++) {
-			newArray[j++] = this->m_Array[i];
+			newArray[i] = this->m_Array[i];
 		}
+		delete[] this->m_Array;
 		this->m_Array = newArray;
 		this->m_Length = m_Length - n;
-		delete[]newArray;
 	}
 	return *this;
 
@@ -295,11 +285,11 @@ CIntArray CIntArray::MoveBehind(int n) {
 // Invert the array
 CIntArray CIntArray::Invert() {
 	int* newArray = new int[this->m_Length];
-	for(int i=0;i<this->m_Length;i++){
-		newArray[i]=this->m_Array[this->m_Length - i - 1];
+	for (int i = 0; i < this->m_Length; i++) {
+		newArray[i] = this->m_Array[this->m_Length - i - 1];
 	}
+	delete[] this->m_Array;
 	this->m_Array = newArray;
-	delete[] newArray;
 	return *this;
 }
 
@@ -312,4 +302,33 @@ int CIntArray::Appearance(int element) {
 		}
 	}
 	return count;
+}
+int main() {
+	CIntArray arr;
+	arr.InputArray();
+	arr.OutputArray();
+	cout << "\nMax: " << arr.Max();
+	cout << "\nMin: " << arr.Min();
+	arr = arr.Ascending();
+	cout << "\nAscending: ";
+	arr.OutputArray();
+	arr = arr.Decreasing();
+	cout << "\nDecreasing: ";
+	arr.OutputArray();
+	cout << "\nIs Symmetry: " << (arr.IsSymmetry() ? "Yes" : "No");
+	arr = arr.Invert();
+	cout << "\nInverted: ";
+	arr.OutputArray();
+	int element;
+	cout << "\nEnter element to count appearances: ";
+	cin >> element;
+	cout << "Appearances of " << element << ": " << arr.Appearance(element);
+	arr = arr.MoveForward();
+	cout << " \nAfter Move Forward: ";
+	arr.OutputArray();
+	arr = arr.MoveBehind(2);
+	cout << " \nAfter Move Behind 2: ";
+	arr.OutputArray();
+
+	return 0;
 }
