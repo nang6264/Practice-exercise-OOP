@@ -229,46 +229,67 @@ bool CIntArray::IsSymmetry() {
 
 // Move elements forward by one position
 CIntArray CIntArray::MoveForward() {
-	int firstElement = this->m_Array[0];
-	for(int i=0;i<this->m_Length - 1;i++){
-		this->m_Array[i]=this->m_Array[i+1];
+	int* newArray = new int[this->m_Length - 1];
+	int j = 0;
+	for(int i=1;i<this->m_Length;i++){
+		newArray[j++]=this->m_Array[i];
 	}
-	this->m_Array[this->m_Length - 1] = firstElement;
+	this->m_Array = newArray;
+	this->m_Length = this->m_Length - 1;
 	return *this;
 }
 
 // Move elements forward by n positions
 CIntArray CIntArray::MoveForward(int n) {
-	n = n % m_Length;
-	int* newArray = new int[m_Length];
-	for (int i = 0; i < m_Length; i++) {
-		newArray[i] = m_Array[(i + n) % m_Length];
+	if (n> this->m_Length) {
+		this->m_Array = nullptr;
+		this->m_Length = 0;
 	}
-	delete[] m_Array;
-	m_Array = newArray;
+	else {
+		int* newArray = new int[this->m_Length - n];
+		int j = 0;
+		for (int i = n; i < this->m_Length; i++) {
+			newArray[j++] = this->m_Array[i];
+		}
+		this->m_Array = newArray;
+		this->m_Length = this->m_Length - n;
+		delete[]newArray;
+	}
 	return *this;
+	
 }
 
 // Move elements backward by one position
 CIntArray CIntArray::MoveBehind() {
-	int lastElement = this->m_Array[this->m_Length - 1];
-	for(int i=this->m_Length - 1;i>0;i--){
-		this->m_Array[i]=this->m_Array[i-1];
+	int* newArray = new int[this->m_Length - 1];
+	int j = 0;
+	for(int i=0;i<this->m_Length - 1;i++){
+		newArray[j++]=this->m_Array[i];
 	}
-	this->m_Array[0] = lastElement;
+	this->m_Array = newArray;
+	this->m_Length = this->m_Length - 1;
 	return *this;
 }
 
 // Move elements backward by n positions
-CIntArray CIntArray::MoveBehind(int) {
-	int n = n % m_Length;
-	int* newArray = new int[m_Length];
-	for (int i = 0; i < m_Length; i++) {
-		newArray[i] = m_Array[(i - n + m_Length) % m_Length];
+CIntArray CIntArray::MoveBehind(int n) {
+	if (n > m_Length) {
+		this->m_Array = nullptr;
+		this->m_Length = 0;
+	
 	}
-	delete[] m_Array;
-	m_Array = newArray;
+	else {
+		int* newArray = new int[m_Length - n];
+		int j = 0;
+		for (int i = 0; i < m_Length - n; i++) {
+			newArray[j++] = this->m_Array[i];
+		}
+		this->m_Array = newArray;
+		this->m_Length = m_Length - n;
+		delete[]newArray;
+	}
 	return *this;
+
 }
 
 // Invert the array
