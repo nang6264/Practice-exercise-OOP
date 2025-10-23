@@ -1,0 +1,99 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\OOP- Object Oriented Program\\BT th\u1EF1c h\u00E0nh\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{B8980629-FFAE-4776-93FE-545B3AC2F6EC}|Exercise 2\\Exercise 2.vcxproj|D:\\OOP- Object Oriented Program\\BT th\u1EF1c h\u00E0nh\\Exercise 2\\.gitignore||{3B902123-F8A7-4915-9F01-361F908088D0}",
+      "RelativeMoniker": "D:0:0:{B8980629-FFAE-4776-93FE-545B3AC2F6EC}|Exercise 2\\Exercise 2.vcxproj|solutionrelative:Exercise 2\\.gitignore||{3B902123-F8A7-4915-9F01-361F908088D0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{91765BB2-02F5-4433-A287-771004720016}|Exercise 1\\Exercise 1.vcxproj|D:\\OOP- Object Oriented Program\\BT th\u1EF1c h\u00E0nh\\Exercise 1\\.gitignore||{3B902123-F8A7-4915-9F01-361F908088D0}",
+      "RelativeMoniker": "D:0:0:{91765BB2-02F5-4433-A287-771004720016}|Exercise 1\\Exercise 1.vcxproj|solutionrelative:Exercise 1\\.gitignore||{3B902123-F8A7-4915-9F01-361F908088D0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8EC462FD-D22E-90A8-E5CE-7E832BA40C5D}|Solution Items{8EC462FD-D22E-90A8-E5CE-7E832BA40C5D}|D:\\OOP- Object Oriented Program\\BT th\u1EF1c h\u00E0nh\\24120325.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{8EC462FD-D22E-90A8-E5CE-7E832BA40C5D}|Solution Items{8EC462FD-D22E-90A8-E5CE-7E832BA40C5D}|solutionrelative:24120325.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B8980629-FFAE-4776-93FE-545B3AC2F6EC}|Exercise 2\\Exercise 2.vcxproj|D:\\OOP- Object Oriented Program\\BT th\u1EF1c h\u00E0nh\\Exercise 2\\main2.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{B8980629-FFAE-4776-93FE-545B3AC2F6EC}|Exercise 2\\Exercise 2.vcxproj|solutionrelative:Exercise 2\\main2.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{e78e0cf7-2e4e-48a7-bf7f-a94d9330a3be}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": ".gitignore",
+              "DocumentMoniker": "D:\\OOP- Object Oriented Program\\BT th\u1EF1c h\u00E0nh\\Exercise 2\\.gitignore",
+              "RelativeDocumentMoniker": "Exercise 2\\.gitignore",
+              "ToolTip": "D:\\OOP- Object Oriented Program\\BT th\u1EF1c h\u00E0nh\\Exercise 2\\.gitignore",
+              "RelativeToolTip": "Exercise 2\\.gitignore",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2025-10-23T01:50:35.46Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": ".gitignore",
+              "DocumentMoniker": "D:\\OOP- Object Oriented Program\\BT th\u1EF1c h\u00E0nh\\Exercise 1\\.gitignore",
+              "RelativeDocumentMoniker": "Exercise 1\\.gitignore",
+              "ToolTip": "D:\\OOP- Object Oriented Program\\BT th\u1EF1c h\u00E0nh\\Exercise 1\\.gitignore",
+              "RelativeToolTip": "Exercise 1\\.gitignore",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAGAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2025-10-23T01:50:18.753Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "24120325.cpp",
+              "DocumentMoniker": "D:\\OOP- Object Oriented Program\\BT th\u1EF1c h\u00E0nh\\24120325.cpp",
+              "RelativeDocumentMoniker": "24120325.cpp",
+              "ToolTip": "D:\\OOP- Object Oriented Program\\BT th\u1EF1c h\u00E0nh\\24120325.cpp",
+              "RelativeToolTip": "24120325.cpp",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2025-10-23T01:39:45.298Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "main2.cpp",
+              "DocumentMoniker": "D:\\OOP- Object Oriented Program\\BT th\u1EF1c h\u00E0nh\\Exercise 2\\main2.cpp",
+              "RelativeDocumentMoniker": "Exercise 2\\main2.cpp",
+              "ToolTip": "D:\\OOP- Object Oriented Program\\BT th\u1EF1c h\u00E0nh\\Exercise 2\\main2.cpp",
+              "RelativeToolTip": "Exercise 2\\main2.cpp",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2025-10-23T01:39:23.779Z"
+            }
+          ]
+        },
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": -1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{40ea2e6b-2121-4bb8-a43e-c83c04b51041}"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

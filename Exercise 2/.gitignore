@@ -1,0 +1,15 @@
+# B? qua th? m?c Visual Studio t?m
+.vs/
+*.vsidx
+
+# B? qua các th? m?c build
+bin/
+obj/
+Debug/
+Release/
+
+# B? qua file t?m h? th?ng
+*.user
+*.suo
+*.log
+*.tmp

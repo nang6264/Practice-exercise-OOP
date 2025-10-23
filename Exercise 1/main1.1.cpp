@@ -253,3 +253,13 @@ int CDate::DeductDateToDate() {
 	return 0; 
 }
 ;
+int DayOfWeek(int Day, int Month, int Year)
+{
+	if (Month < 3)
+		Month += 12, Year--;
+	// Zeller’s Congruence
+	int h = (Day + (13 * (Month + 1)) / 5 + Year + (Year / 4) - (Year / 100) + (Year / 400)) % 7;
+
+	int ISO = (h + 5) % 7 + 1;
+	return ISO;
+}
