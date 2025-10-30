@@ -1,334 +1,122 @@
 #include<iostream>
-#include<set>
-#include<unordered_set>
-#include<algorithm>
-
+#include<string>
+#include<vector>
 using namespace std;
-class CIntArray {
-private:
-	int* m_Array;
-	int m_Length;
+class CStudent {
+	private:
+		string m_Name;
+		string m_ID;
+		vector<pair<string, pair<int, float>>> m_Subjects; // course code, credits, grade
 public:
-	void InputArray();
-	void OutputArray();
-	CIntArray Remove();
-	CIntArray Remove(int);
-	CIntArray Remove(int, int);
-	CIntArray Replace(int, int);
-	CIntArray AddHead(int);
-	CIntArray AddTail(int);
-	CIntArray Insert(int, int);
-	int Max();
-	int Min();
-	CIntArray Ascending();
-	CIntArray Decreasing();
-	bool IsSymmetry();
-	CIntArray MoveForward();
-	CIntArray MoveForward(int);
-	CIntArray MoveBehind();
-	CIntArray MoveBehind(int);
-	CIntArray Invert();
-	int Appearance(int);
+	
+	CStudent() {};
+	CStudent(string, string, vector<pair<string, pair<int, float>>>) {};
+	CStudent(const CStudent&) {};
+	friend ostream& operator<<(ostream& , CStudent&);
+	friend istream& operator>>(istream& , CStudent&);
+	float AverageGrade();
+	bool  operator >(const CStudent&);
+	bool  operator >=(const CStudent&);
+	bool  operator ==(const CStudent&);
+	bool  operator <(const CStudent&);
+	bool  operator <=(const CStudent&);
 };
-// Input array
-void CIntArray::InputArray() {
+// copy constructor
+CStudent::CStudent() {
+	m_Name = "";
+	m_ID = "";
+	m_Subjects.clear();
+}
+
+// default constructor
+CStudent::CStudent(string Name, string ID, vector<pair<string, pair<int, float>>> Subjects) {
+	m_Name = Name;
+	m_ID = ID;
+	m_Subjects = Subjects;
+}
+
+// constructor with parameters
+CStudent::CStudent(const CStudent& other) {
+	m_Name = other.m_Name;
+	m_ID = other.m_ID;
+	m_Subjects = other.m_Subjects;
+}
+
+//output operator
+ostream& operator<<(ostream& os, CStudent& Stdent) {
+	os << "Name: " << Stdent.m_Name << ", ID: " << Stdent.m_ID << endl;
+	for (auto subject : Stdent.m_Subjects) {
+		os << "Course Code: " << subject.first << ", Credits: " << subject.second.first << ", Grade: " << subject.second.second << endl;
+	}
+	return os;
+ }
+
+//input operator
+istream& operator>>(istream& is, CStudent& Stdent) {
+	cout << "Enter Name: ";
+	is >> Stdent.m_Name;
+	cout << "Enter ID: ";
+	is >> Stdent.m_ID;
 	int n;
-	cin >> n;
-	this->m_Length = n;
-	this->m_Array = new int[n];
-	// create array of size n  , random  array[i] = (-99 to 99);
+	cout << "Enter number of subjects: ";
+	is >> n;
+	Stdent.m_Subjects.clear();
 	for (int i = 0; i < n; i++) {
-		this->m_Array[i] = rand() % 199 - 99;
+		string code;
+		int credits;
+		float grade;
+		cout << "Enter Course Code: ";
+		is >> code;
+		cout << "Enter Credits: ";
+		is >> credits;
+		cout << "Enter Grade: ";
+		is >> grade;
+		Stdent.m_Subjects.push_back(make_pair(code, make_pair(credits, grade)));
 	}
+	return is;
 }
 
-// Output array
-void CIntArray::OutputArray() {
-	cout << "Array: ";
-	for (int i = 0; i < this->m_Length; i++) {
-		cout << this->m_Array[i] << " ";
+// average grade calculation
+float CStudent::AverageGrade() {
+	float totalScore = 0;
+	float totalCredits = 0;
+	for (auto subject : m_Subjects) {
+		totalScore += subject.second.first * subject.second.second;
+		totalCredits += subject.second.first;
 	}
-}
-
-// Remove duplicate elements
-CIntArray CIntArray::Remove() {
-	unordered_set<int> s;// create unordered set to store unique elements
-	for (int i = 0;i < this->m_Length;i++) {
-		s.insert(this->m_Array[i]);
-	}
-	int newLength = s.size();
-	CIntArray newArray;
-	newArray.m_Length = newLength;
-	newArray.m_Array = new int[newLength];
-	int index = 0;
-	for (auto it = s.begin(); it != s.end(); it++) {
-		newArray.m_Array[index++] = *it;
-	}
-	delete[]this->m_Array;
-	this->m_Array = newArray.m_Array;
-	this->m_Length = newArray.m_Length;
-	return *this;
-}
-
-// Remove element at index
-CIntArray CIntArray::Remove(int index) {
-	int* newArray = new int[this->m_Length - 1];
-	for (int i = 0, j = 0;i < this->m_Length;i++) {
-		if (i != index) {
-			newArray[j++] = this->m_Array[i];
-		}
-	}
-	delete[]this->m_Array;
-	this->m_Array = newArray;
-	this->m_Length = this->m_Length - 1;
-	return *this;
-}
-
-// Remove elements from index with length
-CIntArray CIntArray::Remove(int length, int index) {
-	if (length > this->m_Length - index) {
-		length = this->m_Length - index;
-	}
-	int* newArray = new int[this->m_Length - length];
-	int j = 0;
-	for (int i = 0; i < this->m_Length; i++) {
-		if (i < index || i >= index + length) {
-			newArray[j++] = this->m_Array[i];
-		}
-	}
-	delete[]this->m_Array;
-	this->m_Array = newArray;
-	this->m_Length = this->m_Length - length;
-	return *this;
-}
-
-// Replace element at index with value
-CIntArray CIntArray::Replace(int oldElement, int newElement) {
-	for (int i = 0;i < this->m_Length;i++) {
-		if (this->m_Array[i] == oldElement) {
-			this->m_Array[i] = newElement;
-		}
-	}
-	return *this;
-}
-
-// Add element at head
-CIntArray CIntArray::AddHead(int element) {
-	int* newArray = new int[this->m_Length + 1];
-	newArray[0] = element;
-	for (int i = 0;i < this->m_Length;i++) {
-		newArray[i + 1] = this->m_Array[i];
-	}
-	delete[]this->m_Array;
-	this->m_Array = newArray;
-	this->m_Length = this->m_Length + 1;
-	return *this;
-}
-
-// Add element at tail
-CIntArray CIntArray::AddTail(int element) {
-	int* newArray = new int[this->m_Length + 1];
-	for (int i = 0;i < this->m_Length;i++) {
-		newArray[i] = this->m_Array[i];
-	}
-	newArray[this->m_Length] = element;
-	delete[]this->m_Array;
-	this->m_Array = newArray;
-	this->m_Length = this->m_Length + 1;
-	return *this;
-}
-
-// Insert element at index
-CIntArray CIntArray::Insert(int element, int index) {
-	int* newArray = new int[this->m_Length + 1];
-	int j = 0;
-	for (int i = 0; i < this->m_Length + 1; i++) {
-		if (i == index) {
-			newArray[i] = element;
-		}
-		else {
-			newArray[i] = this->m_Array[j++];
-		}
-	}
-	delete[]this->m_Array;
-	this->m_Array = newArray;
-	this->m_Length = this->m_Length + 1;
-	return *this;
-}
-
-// Get maximum element
-int CIntArray::Max() {
-	int maxElement = this->m_Array[0];
-	for (int i = 1;i < this->m_Length;i++) {
-		if (this->m_Array[i] > maxElement) {
-			maxElement = this->m_Array[i];
-		}
-	}
-	return maxElement;
-}
-
-// Get minimum element
-int CIntArray::Min() {
-	int minElement = this->m_Array[0];
-	for (int i = 1;i < this->m_Length;i++) {
-		if (this->m_Array[i] < minElement) {
-			minElement = this->m_Array[i];
-		}
-	}
-	return minElement;
+	if (m_Subjects.size() == 0) return 0;
+	return totalScore / totalCredits;
 
 }
 
-// Sort array in ascending order
-CIntArray CIntArray::Ascending() {
-	int* newArray = new int[this->m_Length];
-	for (int i = 0;i < this->m_Length;i++) {
-		newArray[i] = this->m_Array[i];
-	}
-	sort(newArray, newArray + this->m_Length);
-	delete[] this->m_Array;
-	this->m_Array = newArray;
-	this->m_Length = this->m_Length;
-	return *this;
-}
-// Sort array in decreasing order
-CIntArray CIntArray::Decreasing() {
-	int* newArray = new int[this->m_Length];
-	for (int i = 0; i < this->m_Length; i++) {
-		newArray[i] = this->m_Array[i];
-	}
-	sort(newArray, newArray + this->m_Length, greater<int>());
-	delete[] this->m_Array;
-	this->m_Array = newArray;
-	this->m_Length = this->m_Length;
-	return *this;
+// comparison operators based on average grade
+bool CStudent:: operator >(const CStudent&other){
+	return this->AverageGrade() > other.AverageGrade();
 }
 
-// Check if array is symmetric
-bool CIntArray::IsSymmetry() {
-	for (int i = 0;i < this->m_Length / 2;i++) {
-		if (this->m_Array[i] != this->m_Array[this->m_Length - i - 1]) {
-			return false;
-		}
-	}
-	return true;
+// greater than or equal to operator
+bool  CStudent::operator >=(const CStudent&other){
 }
 
-// Move elements forward by one position
-CIntArray CIntArray::MoveForward() {
-	int* newArray = new int[this->m_Length - 1];
-	int j = 0;
-	for (int i = 1;i < this->m_Length;i++) {
-		newArray[j++] = this->m_Array[i];
-	}
-	delete[] this->m_Array;
-	this->m_Array = newArray;
-	this->m_Length = this->m_Length - 1;
-	return *this;
+// equal to operator
+bool CStudent:: operator ==(const CStudent& other) {
 }
 
-// Move elements forward by n positions
-CIntArray CIntArray::MoveForward(int n) {
-	if (n >= this->m_Length) {
-		delete[] this->m_Array;
-		this->m_Array = nullptr;
-		this->m_Length = 0;
-	}
-	else {
-		int* newArray = new int[this->m_Length - n];
-		for (int i = n; i < this->m_Length; i++) {
-			newArray[i - n] = this->m_Array[i];
-		}
-		delete[] this->m_Array;
-		this->m_Array = newArray;
-		this->m_Length = this->m_Length - n;
-	}
-	return *this;
+// less than operator
+bool  CStudent::operator <(const CStudent& other) {
 
 }
 
-// Move elements backward by one position
-CIntArray CIntArray::MoveBehind() {
-	int* newArray = new int[this->m_Length - 1];
-	int j = 0;
-	for (int i = 0;i < this->m_Length - 1;i++) {
-		newArray[j++] = this->m_Array[i];
-	}
-	delete[] this->m_Array;
-	this->m_Array = newArray;
-	this->m_Length = this->m_Length - 1;
-	return *this;
-}
-
-// Move elements backward by n positions
-CIntArray CIntArray::MoveBehind(int n) {
-	if (n >= m_Length) {
-		delete[] this->m_Array;
-		this->m_Array = nullptr;
-		this->m_Length = 0;
-
-	}
-	else {
-		int* newArray = new int[m_Length - n];
-
-		for (int i = 0; i < m_Length - n; i++) {
-			newArray[i] = this->m_Array[i];
-		}
-		delete[] this->m_Array;
-		this->m_Array = newArray;
-		this->m_Length = m_Length - n;
-	}
-	return *this;
+// less than or equal to operator
+bool CStudent:: operator <=(const CStudent&) {
 
 }
 
-// Invert the array
-CIntArray CIntArray::Invert() {
-	int* newArray = new int[this->m_Length];
-	for (int i = 0; i < this->m_Length; i++) {
-		newArray[i] = this->m_Array[this->m_Length - i - 1];
-	}
-	delete[] this->m_Array;
-	this->m_Array = newArray;
-	return *this;
-}
 
-// Count appearances of a value
-int CIntArray::Appearance(int element) {
-	int count = 0;
-	for (int i = 0;i < this->m_Length;i++) {
-		if (this->m_Array[i] == element) {
-			count++;
-		}
-	}
-	return count;
-}
-int main() {
-	CIntArray arr;
-	arr.InputArray();
-	arr.OutputArray();
-	cout << "\nMax: " << arr.Max();
-	cout << "\nMin: " << arr.Min();
-	arr = arr.Ascending();
-	cout << "\nAscending: ";
-	arr.OutputArray();
-	arr = arr.Decreasing();
-	cout << "\nDecreasing: ";
-	arr.OutputArray();
-	cout << "\nIs Symmetry: " << (arr.IsSymmetry() ? "Yes" : "No");
-	arr = arr.Invert();
-	cout << "\nInverted: ";
-	arr.OutputArray();
-	int element;
-	cout << "\nEnter element to count appearances: ";
-	cin >> element;
-	cout << "Appearances of " << element << ": " << arr.Appearance(element);
-	arr = arr.MoveForward();
-	cout << " \nAfter Move Forward: ";
-	arr.OutputArray();
-	arr = arr.MoveBehind(2);
-	cout << " \nAfter Move Behind 2: ";
-	arr.OutputArray();
+class CListStudent {
+private: 
+	CStudent* m_Student;
+	int m_Amount;
+public:
 
-	return 0;
-}
+};
