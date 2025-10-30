@@ -1,0 +1,83 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\OOP- Object Oriented Program\\BT th\u1EF1c h\u00E0nh\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{8EC462FD-D22E-90A8-E5CE-7E832BA40C5D}|Solution Items{8EC462FD-D22E-90A8-E5CE-7E832BA40C5D}|D:\\OOP- Object Oriented Program\\BT th\u1EF1c h\u00E0nh\\24120325.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{8EC462FD-D22E-90A8-E5CE-7E832BA40C5D}|Solution Items{8EC462FD-D22E-90A8-E5CE-7E832BA40C5D}|solutionrelative:24120325.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E41C4C78-A87E-48F5-B580-079237C088E9}|Exercise 3\\Exercise 3.vcxproj|D:\\OOP- Object Oriented Program\\BT th\u1EF1c h\u00E0nh\\Exercise 3\\main3.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{E41C4C78-A87E-48F5-B580-079237C088E9}|Exercise 3\\Exercise 3.vcxproj|solutionrelative:Exercise 3\\main3.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E41C4C78-A87E-48F5-B580-079237C088E9}|Exercise 3\\Exercise 3.vcxproj|D:\\OOP- Object Oriented Program\\BT th\u1EF1c h\u00E0nh\\Exercise 3\\input.txt||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{E41C4C78-A87E-48F5-B580-079237C088E9}|Exercise 3\\Exercise 3.vcxproj|solutionrelative:Exercise 3\\input.txt||{8B382828-6202-11D1-8870-0000F87579D2}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 3,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{e78e0cf7-2e4e-48a7-bf7f-a94d9330a3be}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "input.txt",
+              "DocumentMoniker": "D:\\OOP- Object Oriented Program\\BT th\u1EF1c h\u00E0nh\\Exercise 3\\input.txt",
+              "RelativeDocumentMoniker": "Exercise 3\\input.txt",
+              "ToolTip": "D:\\OOP- Object Oriented Program\\BT th\u1EF1c h\u00E0nh\\Exercise 3\\input.txt",
+              "RelativeToolTip": "Exercise 3\\input.txt",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAGAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003109|",
+              "WhenOpened": "2025-10-30T15:55:05.736Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "main3.cpp",
+              "DocumentMoniker": "D:\\OOP- Object Oriented Program\\BT th\u1EF1c h\u00E0nh\\Exercise 3\\main3.cpp",
+              "RelativeDocumentMoniker": "Exercise 3\\main3.cpp",
+              "ToolTip": "D:\\OOP- Object Oriented Program\\BT th\u1EF1c h\u00E0nh\\Exercise 3\\main3.cpp",
+              "RelativeToolTip": "Exercise 3\\main3.cpp",
+              "ViewState": "AgIAAAUBAAAAAAAAAAAiwCEBAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2025-10-30T13:53:06.621Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "24120325.cpp",
+              "DocumentMoniker": "D:\\OOP- Object Oriented Program\\BT th\u1EF1c h\u00E0nh\\24120325.cpp",
+              "RelativeDocumentMoniker": "24120325.cpp",
+              "ToolTip": "D:\\OOP- Object Oriented Program\\BT th\u1EF1c h\u00E0nh\\24120325.cpp",
+              "RelativeToolTip": "24120325.cpp",
+              "ViewState": "AgIAAOQAAAAAAAAAAAAiwPIAAAAXAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2025-10-23T01:39:45.298Z",
+              "EditorCaption": ""
+            }
+          ]
+        },
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": -1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{40ea2e6b-2121-4bb8-a43e-c83c04b51041}"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
