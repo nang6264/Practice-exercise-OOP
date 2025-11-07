@@ -1,4 +1,5 @@
-﻿#define _CRT_SECURE_NO_WARNINGS
+
+#define _CRT_SECURE_NO_WARNINGS
 #include<iostream>
 #include<string>
 #include<vector>
@@ -98,7 +99,7 @@ float CStudent::AverageGrade()const {
 }
 
 // comparison operators based on average grade
-bool CStudent:: operator >(const CStudent& other)  {
+bool CStudent:: operator >(const CStudent& other) {
 	return this->AverageGrade() > other.AverageGrade();
 }
 
@@ -131,8 +132,8 @@ private:
 	CStudent* m_Student;
 	int m_Amount;
 public:
-	void Input(); 
-	void  Output();	
+	void Input();
+	void  Output();
 	CStudent FindMaxGPAStudent();
 	CStudent FindMinGPAStudent();
 	void SortAscending();
@@ -146,8 +147,8 @@ public:
 // input multi students
 void CListStudent::Input() {
 	cout << "Nhap so luong hoc sinh: ";
-	int n; 
-	cin >> n; 
+	int n;
+	cin >> n;
 	m_Student = new CStudent[n];
 	m_Amount = n;
 	for (int i = 0; i < n; i++) {
@@ -274,7 +275,7 @@ void CListStudent::DeleteList() {
 }
 int main() {
 	ios::sync_with_stdio(false);
- 
+
 	/*freopen("input.txt", "r", stdin);  */ // cin đọc từ file
 	//freopen("output.txt", "w", stdout); // cout ghi ra file
 	CListStudent list;
@@ -294,5 +295,5 @@ int main() {
 	list.Output();
 	list.RankStudents();
 	list.DeleteList();
-	return 0; 
+	return 0;
 }
