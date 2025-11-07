@@ -1,4 +1,4 @@
-#define _CRT_SECURE_NO_WARNINGS
+//#define _CRT_SECURE_NO_WARNINGS
 #include<iostream>
 #include<string>
 #include<vector>
@@ -50,31 +50,34 @@ CStudent::CStudent(const CStudent& other) {
 //output operator
 ostream& operator<<(ostream& os, CStudent& Stdent) {
 	os << "Name: " << Stdent.m_Name << ", ID: " << Stdent.m_ID << end;
+	os << "Cac Mon Hoc: " << end;
+	int index = 1;
 	for (auto subject : Stdent.m_Subjects) {
-		os << "Course Code: " << subject.first << ", Credits: " << subject.second.first << ", Grade: " << subject.second.second << end;
+		os << "Mon " << index++ << ": ";
+		os << "Ma Mon Hoc: " << subject.first << ", So tin chi: " << subject.second.first << ", Diem: " << subject.second.second << end;
 	}
 	return os;
 }
 
 //input operator
 istream& operator>>(istream& is, CStudent& Stdent) {
-	cout << "Enter Name: ";
+	cout << "Nhap Ten: ";
 	is >> Stdent.m_Name;
-	cout << "Enter ID: ";
+	cout << "Nhap ID: ";
 	is >> Stdent.m_ID;
 	int n;
-	cout << "Enter number of subjects: ";
+	cout << "Nhap so luong mon hoc: ";
 	is >> n;
 	Stdent.m_Subjects.clear();
 	for (int i = 0; i < n; i++) {
 		string code;
 		int credits;
 		float grade;
-		cout << "Enter Course Code: ";
+		cout << "Nhap Ma Mon: ";
 		is >> code;
-		cout << "Enter Credits: ";
+		cout << "Nhap so tin chi: ";
 		is >> credits;
-		cout << "Enter Grade: ";
+		cout << "Nhap diem: ";
 		is >> grade;
 		Stdent.m_Subjects.push_back({ code, {credits, grade} });
 	}
@@ -137,12 +140,12 @@ public:
 	void DeleteStudent(string);
 	CStudent FindStudent(string);
 	void RankStudents();
-	void DeleteList();
+	//void DeleteList();
 };
 
 // input multi students
 void CListStudent::Input() {
-	cout << "Enter number of students: ";
+	cout << "Nhap so luong hoc sinh: ";
 	int n;
 	cin >> n;
 	m_Student = new CStudent[n];
@@ -156,7 +159,7 @@ void CListStudent::Input() {
 
 // output multi students
 void   CListStudent::Output() {
-	cout << "List of Students: " << end;
+	cout << "Danh Sach Hoc Sinh: " << end;
 	for (int i = 0; i < m_Amount; i++) {
 		cout << m_Student[i];
 	}
@@ -165,7 +168,7 @@ void   CListStudent::Output() {
 // find student with max GPA
 CStudent  CListStudent::FindMaxGPAStudent() {
 	if (m_Amount == 0) {
-		throw runtime_error("No students in the list.");
+		throw runtime_error("Sinh vien khonog co trong danh sach.");
 	}
 	CStudent maxGPAStudent = m_Student[0];
 	for (int i = 1;i < m_Amount; i++) {
@@ -179,7 +182,7 @@ CStudent  CListStudent::FindMaxGPAStudent() {
 // find student with min GPA
 CStudent  CListStudent::FindMinGPAStudent() {
 	if (m_Amount == 0) {
-		throw runtime_error("No students in the list.");
+		throw runtime_error("Sinh vien khong co trong danh sach.");
 	}
 	CStudent minGPAStudent = m_Student[0];
 	for (int i = 1;i < m_Amount; i++) {
@@ -227,7 +230,7 @@ void  CListStudent::DeleteStudent(string ID) {
 // find student by ID
 CStudent  CListStudent::FindStudent(string ID) {
 	if (m_Amount == 0) {
-		throw runtime_error("No students in the list.");
+		throw runtime_error("Sinh vien khonog co trong danh sach.");
 	}
 	CStudent result = CStudent();
 	for (int i = 0; i < m_Amount; i++) {
@@ -251,16 +254,21 @@ string rankOfStudent(float GPA) {
 
 // rank student by Average Grade
 void  CListStudent::RankStudents() {
+	CStudent* rankedStudents = m_Student;
+	sort(rankedStudents, rankedStudents + m_Amount, [](const CStudent& a, const CStudent& b) {
+		return a.AverageGrade() > b.AverageGrade();
+		});
+	cout << "Bang xep hang: " << end;
 	for (int i = 0; i < m_Amount; i++) {
-		float GPA = m_Student[i].AverageGrade();
-		string rank = rankOfStudent(GPA);
-		cout << "Student ID: " << m_Student[i].getID() << ", GPA: " << GPA << ", Rank: " << rank << end;
+		cout << "Hang" << i + 1 << end;
+		cout << rankedStudents[i];
+		cout << "Loai: " << rankOfStudent(rankedStudents[i].AverageGrade()) << end;
 	}
 }
 
-// delete student list
-void CListStudent::DeleteList() {
-	delete[] m_Student;
-	m_Student = nullptr;
-	m_Amount = 0;
-}
+//// delete student list
+//void CListStudent::DeleteList() {
+//	delete[] m_Student;
+//	m_Student = nullptr;
+//	m_Amount = 0;
+//}

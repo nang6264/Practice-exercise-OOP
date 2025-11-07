@@ -3,6 +3,10 @@
   "WorkspaceRootPath": "D:\\OOP- Object Oriented Program\\BT th\u1EF1c h\u00E0nh\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{CEEB7CD2-910D-417C-B5F9-6CAF9AE1C734}|Exercise 4\\Exercise 4.vcxproj|D:\\OOP- Object Oriented Program\\BT th\u1EF1c h\u00E0nh\\Exercise 4\\main4.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{CEEB7CD2-910D-417C-B5F9-6CAF9AE1C734}|Exercise 4\\Exercise 4.vcxproj|solutionrelative:Exercise 4\\main4.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{8EC462FD-D22E-90A8-E5CE-7E832BA40C5D}|Solution Items{8EC462FD-D22E-90A8-E5CE-7E832BA40C5D}|D:\\OOP- Object Oriented Program\\BT th\u1EF1c h\u00E0nh\\24120325.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{8EC462FD-D22E-90A8-E5CE-7E832BA40C5D}|Solution Items{8EC462FD-D22E-90A8-E5CE-7E832BA40C5D}|solutionrelative:24120325.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
@@ -22,7 +26,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Bookmark",
@@ -30,7 +34,20 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 0,
+              "Title": "main4.cpp",
+              "DocumentMoniker": "D:\\OOP- Object Oriented Program\\BT th\u1EF1c h\u00E0nh\\Exercise 4\\main4.cpp",
+              "RelativeDocumentMoniker": "Exercise 4\\main4.cpp",
+              "ToolTip": "D:\\OOP- Object Oriented Program\\BT th\u1EF1c h\u00E0nh\\Exercise 4\\main4.cpp",
+              "RelativeToolTip": "Exercise 4\\main4.cpp",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAIwIQAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2025-11-05T06:15:01.196Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
               "Title": "input.txt",
               "DocumentMoniker": "D:\\OOP- Object Oriented Program\\BT th\u1EF1c h\u00E0nh\\Exercise 3\\input.txt",
               "RelativeDocumentMoniker": "Exercise 3\\input.txt",
@@ -42,7 +59,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "main3.cpp",
               "DocumentMoniker": "D:\\OOP- Object Oriented Program\\BT th\u1EF1c h\u00E0nh\\Exercise 3\\main3.cpp",
               "RelativeDocumentMoniker": "Exercise 3\\main3.cpp",
@@ -54,16 +71,15 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "24120325.cpp",
               "DocumentMoniker": "D:\\OOP- Object Oriented Program\\BT th\u1EF1c h\u00E0nh\\24120325.cpp",
               "RelativeDocumentMoniker": "24120325.cpp",
               "ToolTip": "D:\\OOP- Object Oriented Program\\BT th\u1EF1c h\u00E0nh\\24120325.cpp",
               "RelativeToolTip": "24120325.cpp",
-              "ViewState": "AgIAAOQAAAAAAAAAAAAiwPIAAAAXAAAAAAAAAA==",
+              "ViewState": "AgIAAOoAAAAAAAAAAAAiwOkAAAACAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2025-10-23T01:39:45.298Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-10-23T01:39:45.298Z"
             }
           ]
         },
